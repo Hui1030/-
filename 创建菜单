@@ -1,0 +1,62 @@
+
+from tkinter import *
+
+root = Tk()
+root.wm_title("Python 从入门到出家")
+
+menubar_click = Menu(root)
+
+# =============================================================================
+# #创建右键菜单
+# =============================================================================
+def xin():
+    global root
+    L = Label(root)
+    L['text'] = ("Boommmmmmm!")
+    L.pack()
+
+for item in ['点我！','别点我！','让你点我！','谁点我？']:
+    menubar_click.add_command(label = item)
+
+menubar_click.add_separator()
+
+menubar_click.add_command(label = '点我试试？',command = xin)
+for item in ['敢点嘛？','为什么要点？']:
+    menubar_click.add_command(label = item)
+
+def pop(event):
+    menubar_click.post(event.x_root,event.y_root)
+    
+root.bind("<Button-3>",pop)
+
+
+# =============================================================================
+# #创建主菜单+下拉菜单
+# =============================================================================
+menubar = Menu(root)
+    
+fmenu = Menu(menubar)
+for item in ['新建','打开']:
+    fmenu.add_checkbutton(label = item)    
+fmenu.add_separator()
+for item in ['保存','另存为']:
+    fmenu.add_radiobutton(label = item)
+menubar.add_cascade(label = '文件',menu = fmenu)
+
+emenu = Menu(menubar)    
+for item in ['复制','粘贴','剪切']:
+    emenu.add_command(label = item)
+menubar.add_cascade(label = '编辑',menu = emenu)
+  
+vmenu = Menu(menubar)    
+for item in ['默认视图','新式视图']:
+    vmenu.add_command(label = item)
+menubar.add_cascade(label = '视图',menu = vmenu) 
+       
+amenu = Menu(menubar)    
+for item in ['版权信息','其他说明']:
+    amenu.add_command(label = item)
+menubar.add_cascade(label = '关于',menu = amenu)   
+    
+root['menu'] = menubar
+root.mainloop()
