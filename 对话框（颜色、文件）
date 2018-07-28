@@ -1,0 +1,27 @@
+import tkinter.colorchooser
+import tkinter.filedialog
+from tkinter import *
+
+root = Tk()
+root.wm_title("Python 从入门到出家")
+root.geometry("500x500")
+
+# =============================================================================
+# # 对话框//颜色选择、打开文件
+# =============================================================================
+
+def callback():    
+    fileName = colorchooser.askcolor()
+    print(fileName[1])
+  
+def menu_click():
+    #print("ok")
+    fileName = filedialog.askopenfilename()
+    print(fileName)    
+    
+menubar = Menu(root)
+menubar.add_command(label = "载入文件",command = menu_click)
+
+Button(root,text="选择颜色",command=callback).pack(fill = X)
+root['menu'] = menubar
+root.mainloop()
