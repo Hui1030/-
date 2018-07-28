@@ -1,5 +1,6 @@
-
 from tkinter import *
+from tkinter.dialog import *
+
 
 root = Tk()
 root.wm_title("Python 从入门到出家")
@@ -59,4 +60,29 @@ for item in ['版权信息','其他说明']:
 menubar.add_cascade(label = '关于',menu = amenu)   
     
 root['menu'] = menubar
+
+# =============================================================================
+# # 创建对话框dialog 返回Label
+# =============================================================================
+
+def func():
+    global root
+    global answerbutton
+    d = Dialog(root,title = "Python学习计划",text = "Python难不难学啊？",
+               bitmap = DIALOG_ICON,default = 0,strings = ("难！","一般般","So easy!"))
+    if d.num == 0:
+        answerbutton['text'] = "渣渣！" 
+    elif d.num == 1:
+        answerbutton['text'] = ["加油！"]
+        #answerbutton['background'] = ["yellow" ]
+    else:
+        answerbutton['text'] = "牛逼！" 
+
+answerbutton = Label(root,text = " ",width = 50)
+answerbutton.pack()
+
+questionbutton = Button(root,text = "问个问题呗？",width = 50,background = 'yellow',command = func)
+questionbutton.pack()
+
+
 root.mainloop()
